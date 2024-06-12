@@ -19,6 +19,7 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
+
 development:
   <<: *default
   database: test_digital_ocean_development
@@ -77,8 +78,16 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+#production:
+#  <<: *default
+#  database: test_digital_ocean_production
+#  username: test_digital_ocean
+#  password: <%#= ENV["TEST_DIGITAL_OCEAN_DATABASE_PASSWORD"] %>
 production:
   <<: *default
-  database: test_digital_ocean_production
-  username: test_digital_ocean
-  password: <%= ENV["TEST_DIGITAL_OCEAN_DATABASE_PASSWORD"] %>
+  database: db
+  username: db
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: app-2dbf2d3e-23ce-444c-ae44-48b16852a90c-do-user-16804475-0.c.db.ondigitalocean.com
+  port: 25060
+  sslmode: require
